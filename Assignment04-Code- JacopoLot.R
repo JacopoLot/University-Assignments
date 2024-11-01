@@ -55,7 +55,7 @@ summary(WDI)
 summary(WDI$FE)
 
 ###### EPS ######
-#Read EPS dataset 
+
 EPS <- read.csv("eps_2023.csv")
 
 #Check out all variable names 
@@ -79,8 +79,6 @@ Corr<- cor(dataset$EI, dataset$EPS, use = "complete.obs") #note that we are tell
 #title = "\n\n Correlation Plot",
 #type = "full")
 
-#TRY TO DO SCATTERPLOT GGPLOT
-#https://datacarpentry.org/R-ecology-lesson/04-visualization-ggplot2.html
 
 library("ggplot2")
 
@@ -93,9 +91,6 @@ ggplot(data = dataset, aes(x = EPS, y = EI)) +
 ggplot(data = dataset, aes(x = EPS, y = EI)) +
   geom_point() 
 
-#### Visually inspect  the data  ######
-
-#For simplicity, select countries..you can edit this
 group1 <- dataset %>%
   filter(iso3c %in% c("AUS", "CAN","CHN" , "CHE", "ESP",  "JPN", "NLD", "BRA", "MEX", "IDN", "IND","USA"))
 
@@ -144,20 +139,8 @@ LM0 <- lm(EI2 ~factor(country) +  EPS, data = group1)
 summary(LM0) 
 summary(LM1)
 
-#1. How does EPS affect EI? Interpret the coefficient from model LM0
-#2. Why the coefficient of EPS in LM1 is much lower than in LM0? Discuss 
-#3. Compute CI=CO2/GDP and estimate the same relationship by using CI as dep. var. Discuss the results as in 1 and 2.
-
-
-
 #plotting Model 2
 avPlots(LM1, main= paste("Model 1: Fixed effects using least squares dummy variable model"), col = carPalette()[5], col.lines = carPalette()[1])
-
-
-
-
-#### Describe the data  ######
-
 
 #-------------------------------------------------
 
@@ -217,7 +200,7 @@ summary(WDI)
 summary(WDI$FE)
 
 ###### EPS ######
-#Read EPS dataset 
+
 EPS <- read.csv("eps_2023.csv")
 
 #Check out all variable names 
@@ -255,9 +238,6 @@ ggplot(data = dataset, aes(x = EPS, y = CI)) +
 ggplot(data = dataset, aes(x = EPS, y = CI)) +
   geom_point() 
 
-#### Visually inspect  the data  ######
-
-#For simplicity, select countries..you can edit this
 group1 <- dataset %>%
   filter(iso3c %in% c("AUS", "CAN","CHN" , "CHE", "ESP",  "JPN", "NLD", "BRA", "MEX", "IDN", "IND","USA"))
 
@@ -287,8 +267,6 @@ ggplot(group1, aes(x = as.numeric(year))) +
   ggtitle("EPS from 1990 to 2015") +
   facet_wrap(facets = vars(iso3c))
 
-
-
 #### Fitting the model ######
 
 ## lm method and factor notation for fixed effects
@@ -305,11 +283,6 @@ LM0 <- lm(CI2 ~factor(country) +  EPS, data = group1)
 summary(LM0) 
 summary(LM1)
 
-#1. How does EPS affect CI? Interpret the coefficient from model LM0
-#2. Why the coefficient of EPS in LM1 is much lower than in LM0? Discuss 
-#3. Compute CI=CO2/GDP and estimate the same relationship by using CI as dep. var. Discuss the results as in 1 and 2.
-
-
 
 #plotting Model 2
 avPlots(LM1, main= paste("Model 1: Fixed effects using least squares dummy variable model"), col = carPalette()[5], col.lines = carPalette()[1])
@@ -317,7 +290,6 @@ avPlots(LM1, main= paste("Model 1: Fixed effects using least squares dummy varia
 
 
 
-#### Describe the data  ######
 
 
 
